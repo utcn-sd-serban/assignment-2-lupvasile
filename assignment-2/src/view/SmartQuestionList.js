@@ -30,7 +30,6 @@ export default class SmartQuestionList extends Component {
     }
 
     render() {
-        debugger;
         return (
             <QuestionList questions={this.state.questions} 
                 onViewDetails={questionPresenter.onViewDetails}
