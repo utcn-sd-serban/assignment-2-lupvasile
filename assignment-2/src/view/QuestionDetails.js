@@ -7,7 +7,6 @@ const QuestionDetails = ({ question, loggedUser, onDelete, onEdit, onChange, onV
         <div>
             {question !== undefined ?
                 <div>
-                    <SmartNavBar />
                     <section className="articles">
                         <div className="column is-8 is-offset-2">
                             <div className="card article">

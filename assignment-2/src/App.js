@@ -12,9 +12,11 @@ import SmartUpdateQuestion from './view/SmartUpdateQuestion';
 import SmartUpdateAnswer from './view/SmartUpdateAnswer';
 import Test from './view/Test';
 import SmartUserList from './view/SmartUserList';
+import SmartNavBar from './view/SmartNavBar';
 
 const App = () => (
   <div className="App">
+  <SmartNavBar />
     <HashRouter>
       <Switch>
         <Route exact={true} component={SmartLogin} path="/" />

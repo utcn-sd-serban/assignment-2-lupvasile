@@ -3,7 +3,6 @@ import SmartNavBar from "./SmartNavBar";
 
 const UpdateAnswer = ({ answer, onUpdate, onChange, answerId }) => (
     <div>
-        <SmartNavBar />
         <div className="column is-13">
             <div className="field">
                 <div className="control">

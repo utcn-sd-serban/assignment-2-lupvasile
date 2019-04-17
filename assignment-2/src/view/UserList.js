@@ -3,10 +3,9 @@ import SmartNavBar from "./SmartNavBar";
 import UserSummary from "./UserSummary"
 
 const UserList = ({ users, onBan }) => (
-    <div>
-        <SmartNavBar />
-        <div className="columns">
-            <div className="column is-8">
+    <div> 
+        <div className="columns is-centered">
+            <div className="column is-8 ">
                 {
                     users.map((user, index) => (
                         <UserSummary user={user} onBan={onBan}></UserSummary>

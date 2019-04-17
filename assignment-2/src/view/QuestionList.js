@@ -5,7 +5,6 @@ import SmartNavBar from "./SmartNavBar";
 //id, author, title, text, creationDateTime, tags, voteCount
 const QuestionList = ({ questions, onViewDetails, questionSearchText, onChangeSearchText, onSearchByTitle, onSearchByTag }) => (
     <div>
-        <SmartNavBar />
         <nav className="navbar is-white">
             <div className="container">
                 <div className="navbar-menu">
