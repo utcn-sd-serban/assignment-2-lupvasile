@@ -1,16 +1,17 @@
 import React, { Component } from "react";
 import model from "../model/model";
 
-import QuestionDetails from "./QuestionDetails";
-import questionPresenter from "../presenter/QuestionPresenter";
+import AnswerDetails from "./AnswerDetails";
 import answerPresenter from "../presenter/AnswerPresenter";
+import AnswerList from "./AnswerList";
 
 const mapModelStateToComponentState = (modelState, props) => ({
-    question: model.getQuestion(parseInt(props.match.params.questionId)),
-    loggedUser: model.state.currentUser
+    answers: model.listAnswersForQuestion(props.questionId),
+    loggedUser: model.state.currentUser,
+    questionId: props.questionId
 })
 
-export default class SmartQuestionDetails extends Component {
+export default class SmartAnswerList extends Component {
     constructor(props) {
         super(props);
         this.state = mapModelStateToComponentState(model.state, props);
@@ -19,7 +20,7 @@ export default class SmartQuestionDetails extends Component {
     }
 
     componentDidUpdate(prev) {
-        if (prev.match.params.questionId !== this.props.match.params.questionId) {
+        if (prev.questionId !== this.props.questionId) {
             this.setState(mapModelStateToComponentState(model.state, this.props));
         }
     }
@@ -30,12 +31,12 @@ export default class SmartQuestionDetails extends Component {
 
     render() {
         return (
-            <QuestionDetails
-                question={this.state.question}
+            <AnswerList answers={this.state.answers}
                 loggedUser={this.state.loggedUser}
-                onEdit={questionPresenter.onEdit}
-                onDelete={questionPresenter.onDelete}
-                onVote={questionPresenter.onVote}
+                onDelete={answerPresenter.onDelete}
+                onEdit={answerPresenter.onEdit}
+                onVote={answerPresenter.onVote}
+                questionId={this.state.questionId}
             />
         );
     }

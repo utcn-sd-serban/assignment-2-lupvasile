@@ -1,9 +1,9 @@
 import React from "react";
 import SmartNavBar from "./SmartNavBar";
 import AnswerList from "./AnswerList";
+import SmartAnswerList from "./SmartAnswerList";
 
-const QuestionDetails = ({ question, loggedUser, onDelete, onEdit, onChange, onVote,
-    answers, onDeleteAnswer, onEditAnswer, onVoteAnswer }) => (
+const QuestionDetails = ({ question, loggedUser, onDelete, onEdit, onVote}) => (
         <div>
             <SmartNavBar />
             {question !== undefined ?
@@ -56,13 +56,7 @@ const QuestionDetails = ({ question, loggedUser, onDelete, onEdit, onChange, onV
                             </div>
                         </div>
                     </section>
-                    <AnswerList answers={answers}
-                        loggedUser={loggedUser}
-                        onDelete={onDeleteAnswer}
-                        onEdit={onEditAnswer}
-                        onVote={onVoteAnswer}
-                        questionId={question.id}
-                    />
+                    <SmartAnswerList questionId={question.id} />
                 </div>
                 : null}
         </div>
