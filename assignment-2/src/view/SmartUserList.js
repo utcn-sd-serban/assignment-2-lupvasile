@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import model from "../model/model";
-import QuestionList from "./QuestionList";
-import questionPresenter from "../presenter/QuestionPresenter";
-import UserList from "./UserList";
 import userPresenter from "../presenter/UserPresenter";
+import UserList from "./UserList";
 
 const mapModelStateToComponentState = modelState => ({
     users: modelState.users

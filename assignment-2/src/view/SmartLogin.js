@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import model from "../model/model";
-
-import Login from "./Login";
 import LoginPresenter from "../presenter/LoginPresenter";
+import Login from "./Login";
+
 
 const mapModelStateToComponentState = (modelState) => ({
     username: modelState.loginUser.username,
@@ -23,7 +23,7 @@ export default class SmartLogin extends Component {
 
     render() {
         return (
-            <Login 
+            <Login
                 username={this.state.username}
                 password={this.state.password}
                 onLogin={LoginPresenter.onLogin}

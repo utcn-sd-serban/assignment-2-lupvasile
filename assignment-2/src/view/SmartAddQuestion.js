@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import model from "../model/model";
-
-import AddQuestion from "./AddQuestion";
 import questionPresenter from "../presenter/QuestionPresenter";
+import AddQuestion from "./AddQuestion";
+
 
 const mapModelStateToComponentState = modelState => ({
     newQuestion: modelState.newQuestion,
@@ -23,12 +23,12 @@ export default class SmartCreateStudent extends Component {
 
     render() {
         return (
-            <AddQuestion 
+            <AddQuestion
                 onCreate={questionPresenter.onCreate}
                 onChange={questionPresenter.onChange}
                 question={this.state.newQuestion}
                 existingTags={this.state.tags}
-                 />
+            />
         );
     }
 }

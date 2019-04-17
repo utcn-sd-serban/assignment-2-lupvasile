@@ -6,7 +6,7 @@ class NavBarPresenter {
     }
 
     onAllQuestions() {
-        model.changeModelProperty("questionSearchText","");
+        model.changeModelProperty("questionSearchText", "");
         window.location.assign("#/all-questions");
     }
 

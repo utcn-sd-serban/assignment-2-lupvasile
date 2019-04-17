@@ -3,6 +3,7 @@ import SmartNavBar from "./SmartNavBar";
 
 const AddQuestion = ({ question, existingTags, onCreate, onChange }) => (
     <div>
+        <SmartNavBar />
         <div className="column is-13">
             <div className="field">
                 <label className="label">Title</label>
@@ -10,7 +11,7 @@ const AddQuestion = ({ question, existingTags, onCreate, onChange }) => (
                     <input className="input" type="text" placeholder="Please input title" value={question.title} onChange={e => onChange("title", e.target.value)} />
                 </div>
             </div>
-            
+
 
 
             <div className="field">
@@ -22,7 +23,7 @@ const AddQuestion = ({ question, existingTags, onCreate, onChange }) => (
             <div className="field">
                 <label className="label">Tags</label>
                 <div className="control">
-                    <input className="input" type="text" placeholder="Please input tags, comma separated: tag1,tag2" value={question.tagsAsString} onChange={e => onChange("tagsAsString", e.target.value)}/>
+                    <input className="input" type="text" placeholder="Please input tags, comma separated: tag1,tag2" value={question.tagsAsString} onChange={e => onChange("tagsAsString", e.target.value)} />
                 </div>
             </div>
             <div className="media-content">
@@ -33,7 +34,7 @@ const AddQuestion = ({ question, existingTags, onCreate, onChange }) => (
                         {
                             existingTags ? existingTags.map((tag, index) => (
                                 <span><span className="tag">{tag} </span> &nbsp;</span>
-                            )) :null
+                            )) : null
                         }
                     </p>
                 </div>
@@ -48,7 +49,7 @@ const AddQuestion = ({ question, existingTags, onCreate, onChange }) => (
 
 
 
-            
+
         </div>
     </div>
 );

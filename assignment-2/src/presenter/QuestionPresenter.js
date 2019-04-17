@@ -1,5 +1,4 @@
 import model from "../model/model";
-import { debug } from "util";
 
 class QuestionPresenter {
     onViewDetails(questionId) {

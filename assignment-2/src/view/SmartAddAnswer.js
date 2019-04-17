@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import model from "../model/model";
-
-import AddAnswer from "./AddAnswer";
 import answerPresenter from "../presenter/AnswerPresenter";
+import AddAnswer from "./AddAnswer";
 
-const mapModelStateToComponentState = (modelState,props) => ({
+
+const mapModelStateToComponentState = (modelState, props) => ({
     newAnswer: modelState.newAnswer,
     questionId: props.questionId
 });
@@ -12,8 +12,8 @@ const mapModelStateToComponentState = (modelState,props) => ({
 export default class SmartAddAnswer extends Component {
     constructor(props) {
         super(props);
-        this.state = mapModelStateToComponentState(model.state,this.props);
-        this.listener = modelState => this.setState(mapModelStateToComponentState(modelState,this.props));
+        this.state = mapModelStateToComponentState(model.state, this.props);
+        this.listener = modelState => this.setState(mapModelStateToComponentState(modelState, this.props));
         model.addListener("change", this.listener);
     }
 

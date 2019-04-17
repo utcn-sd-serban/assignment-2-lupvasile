@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import model from "../model/model";
-
-import AddAnswer from "./AddAnswer";
 import answerPresenter from "../presenter/AnswerPresenter";
 import UpdateAnswer from "./UpdateAnswer";
+
 
 const mapModelStateToComponentState = (modelState, props) => ({
     updateAnswer: modelState.updateAnswer,

@@ -1,5 +1,4 @@
 import React from "react";
-import SmartNavBar from "./SmartNavBar";
 
 const AnswerDetails = ({ answer, loggedUser, onDelete, onEdit, onVote }) => (
     <div>

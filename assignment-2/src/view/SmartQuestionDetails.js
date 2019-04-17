@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import model from "../model/model";
-
-import QuestionDetails from "./QuestionDetails";
 import questionPresenter from "../presenter/QuestionPresenter";
-import answerPresenter from "../presenter/AnswerPresenter";
+import QuestionDetails from "./QuestionDetails";
+
 
 const mapModelStateToComponentState = (modelState, props) => ({
     question: model.getQuestion(parseInt(props.match.params.questionId)),

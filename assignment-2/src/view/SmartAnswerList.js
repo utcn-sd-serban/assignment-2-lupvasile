@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import model from "../model/model";
-
-import AnswerDetails from "./AnswerDetails";
 import answerPresenter from "../presenter/AnswerPresenter";
 import AnswerList from "./AnswerList";
+
 
 const mapModelStateToComponentState = (modelState, props) => ({
     answers: model.listAnswersForQuestion(props.questionId),

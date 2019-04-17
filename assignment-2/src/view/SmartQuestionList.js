@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import model from "../model/model";
-import QuestionList from "./QuestionList";
 import questionPresenter from "../presenter/QuestionPresenter";
+import QuestionList from "./QuestionList";
 
-const mapModelStateToComponentState = (modelState,props) => ({
+const mapModelStateToComponentState = (modelState, props) => ({
     questions: (!props.match.params.hasOwnProperty("filterText")) ? modelState.questions
-                : props.match.params.filterType === "filterByTitle" ? model.filterQuestionsByTitle(props.match.params.filterText)
-                : model.filterQuestionByTagCommaSeparated(props.match.params.filterText),
+        : props.match.params.filterType === "filterByTitle" ? model.filterQuestionsByTitle(props.match.params.filterText)
+            : model.filterQuestionByTagCommaSeparated(props.match.params.filterText),
     user: modelState.currentUser,
     questionSearchText: modelState.questionSearchText
 });
@@ -31,7 +31,7 @@ export default class SmartQuestionList extends Component {
 
     render() {
         return (
-            <QuestionList questions={this.state.questions} 
+            <QuestionList questions={this.state.questions}
                 onViewDetails={questionPresenter.onViewDetails}
                 questionSearchText={this.state.questionSearchText}
                 onChangeSearchText={questionPresenter.onChangeSearchText}

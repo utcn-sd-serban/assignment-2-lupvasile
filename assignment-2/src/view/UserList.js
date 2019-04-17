@@ -1,6 +1,6 @@
 import React from "react";
 import SmartNavBar from "./SmartNavBar";
-import UserSummary from "./UserSummary"
+import UserSummary from "./UserSummary";
 
 const UserList = ({ users, onBan }) => (
     <div>

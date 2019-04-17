@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import model from "../model/model";
-
-import AddQuestion from "./AddQuestion";
 import questionPresenter from "../presenter/QuestionPresenter";
 import UpdateQuestion from "./UpdateQuestion";
 
-const mapModelStateToComponentState = (modelState,props) => ({
+
+const mapModelStateToComponentState = (modelState, props) => ({
     updateQuestion: modelState.updateQuestion,
     updateId: parseInt(props.match.params.questionId)
 });
@@ -30,12 +29,12 @@ export default class SmartUpdateQuestion extends Component {
 
     render() {
         return (
-            <UpdateQuestion 
+            <UpdateQuestion
                 onUpdate={questionPresenter.onUpdate}
                 onChange={questionPresenter.onChangeForUpdate}
                 question={this.state.updateQuestion}
                 questionId={this.state.updateId}
-                 />
+            />
         );
     }
 }

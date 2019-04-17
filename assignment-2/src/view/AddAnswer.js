@@ -1,5 +1,4 @@
 import React from "react";
-import SmartNavBar from "./SmartNavBar";
 
 const AddAnswer = ({ answer, onCreate, onChange, questionId }) => (
     <div className="column is-13">

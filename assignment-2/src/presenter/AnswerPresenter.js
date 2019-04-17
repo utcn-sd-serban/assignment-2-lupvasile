@@ -1,5 +1,4 @@
 import model from "../model/model";
-import { debug } from "util";
 
 class AnswerPresenter {
     onViewDetails(answerId) {
@@ -37,7 +36,7 @@ class AnswerPresenter {
     }
 
     onVote(answerId, vote) {
-        if(vote > 0){
+        if (vote > 0) {
             model.sendVoteAnswer(model.state.currentUser.id, answerId, true);
         } else {
             model.sendVoteAnswer(model.state.currentUser.id, answerId, false);
@@ -47,4 +46,4 @@ class AnswerPresenter {
 
 const answerPresenter = new AnswerPresenter();
 
-        export default answerPresenter;
+export default answerPresenter;

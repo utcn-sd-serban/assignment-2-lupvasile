@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import model from "../model/model";
-import NavBar from "./NavBar";
 import navBarPresenter from "../presenter/NavBarPresenter";
+import NavBar from "./NavBar";
 
 
 const mapModelStateToComponentState = (modelState) => ({

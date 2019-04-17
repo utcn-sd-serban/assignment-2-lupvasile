@@ -1,5 +1,4 @@
 import React from "react";
-import NavBar from "./NavBar";
 import QuestionSummary from "./QuestionSummary";
 import SmartNavBar from "./SmartNavBar";
 //id, author, title, text, creationDateTime, tags, voteCount

@@ -1,8 +1,5 @@
 import React from "react";
-import NavBar from "./NavBar";
-import SmartNavBar from "./SmartNavBar";
 import AnswerDetails from "./AnswerDetails";
-import AddAnswer from "./AddAnswer";
 import SmartAddAnswer from "./SmartAddAnswer";
 
 const AnswerList = ({ answers, loggedUser, onDelete, onEdit, onVote, questionId }) => (
@@ -21,7 +18,7 @@ const AnswerList = ({ answers, loggedUser, onDelete, onEdit, onVote, questionId 
                 }
             </div>
         </div>
-        <SmartAddAnswer questionId={questionId}/>
+        <SmartAddAnswer questionId={questionId} />
     </div>
 );
 
