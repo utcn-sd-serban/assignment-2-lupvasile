@@ -20,7 +20,7 @@ export default class SmartQuestionList extends Component {
     }
 
     componentDidUpdate(prev) {
-        if (prev.match.params.filterText !== this.props.match.params.filterText) {
+        if (prev.match.params !== this.props.match.params) {
             this.setState(mapModelStateToComponentState(model.state, this.props));
         }
     }
