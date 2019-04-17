@@ -3,18 +3,26 @@ import model from "../model/model";
 import QuestionList from "./QuestionList";
 import questionPresenter from "../presenter/QuestionPresenter";
 
-const mapModelStateToComponentState = modelState => ({
-    questions: modelState.questionDisplayedList,
+const mapModelStateToComponentState = (modelState,props) => ({
+    questions: (!props.match.params.hasOwnProperty("filterText")) ? modelState.questions
+                : props.match.params.filterType === "filterByTitle" ? model.filterQuestionsByTitle(props.match.params.filterText)
+                : model.filterQuestionByTagCommaSeparated(props.match.params.filterText),
     user: modelState.currentUser,
     questionSearchText: modelState.questionSearchText
 });
 
 export default class SmartQuestionList extends Component {
-    constructor() {
-        super();
-        this.state = mapModelStateToComponentState(model.state);
-        this.listener = modelState => this.setState(mapModelStateToComponentState(modelState));
+    constructor(props) {
+        super(props);
+        this.state = mapModelStateToComponentState(model.state, props);
+        this.listener = modelState => this.setState(mapModelStateToComponentState(modelState, this.props));
         model.addListener("change", this.listener);
+    }
+
+    componentDidUpdate(prev) {
+        if (prev.match.params.filterText !== this.props.match.params.filterText) {
+            this.setState(mapModelStateToComponentState(model.state, this.props));
+        }
     }
 
     componentWillUnmount() {
@@ -22,6 +30,7 @@ export default class SmartQuestionList extends Component {
     }
 
     render() {
+        debugger;
         return (
             <QuestionList questions={this.state.questions} 
                 onViewDetails={questionPresenter.onViewDetails}

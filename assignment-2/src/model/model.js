@@ -53,8 +53,6 @@ class Model extends EventEmitter {
 
             questionSearchText: "",
 
-            questionDisplayedList: [],
-
             answers: [makeAnswer(1, localUsers[0], "answer 1", "02/02/02", 1, 0),
             makeAnswer(2, localUsers[1], "answer 2", "02/02/02", 1, 0),
             makeAnswer(3, localUsers[0], "answer 3", "02/02/02", 1, 0)
@@ -64,8 +62,6 @@ class Model extends EventEmitter {
 
             updateAnswer: { text: "" }
         };
-
-        this.state.questionDisplayedList = this.state.questions;
     }
 
     banUser(requesterUserId, bannedUserId) {
@@ -152,6 +148,12 @@ class Model extends EventEmitter {
         this.emit("change", this.state);
     }
 
+    filterQuestionByTagCommaSeparated(tagText) {
+        var tags = tagText.trim().split(',');
+        debugger;
+        return this.filterQuestionsByTag(tags);
+    }
+
     filterQuestionsByTag(tags) {
         return this.state.questions.filter(q => tags.every(t => q.tags.includes(t)));
     }
@@ -201,7 +203,6 @@ class Model extends EventEmitter {
         this.state = {
             ...this.state,
             questions: this.state.questions.filter(q => q.id !== questionId),
-            questionDisplayedList: this.state.questionDisplayedList.filter(q => q.id !== questionId)
         };
         this.emit("change", this.state);
     }

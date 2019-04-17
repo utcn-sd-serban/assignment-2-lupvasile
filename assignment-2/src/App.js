@@ -20,7 +20,7 @@ const App = () => (
       <Switch>
         <Route exact={true} component={SmartLogin} path="/" />
         <Route exact={true} component={BannedUser} path="/banned-user" />
-        <Route exact={true} component={SmartQuestionList} path="/all-questions" />
+        <Route exact={true} component={SmartQuestionList} path="/all-questions/:filterType/:filterText" />
         <Route exact={true} component={SmartAddQuestion} path="/add-question" />
         <Route exact={true} component={SmartQuestionDetails} path="/question-details/:questionId" />'
         <Route exact={true} component={SmartUpdateQuestion} path="/edit-question/:questionId" />'

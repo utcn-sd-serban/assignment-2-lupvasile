@@ -14,7 +14,6 @@ class QuestionPresenter {
         model.changeNewQuestionProperty("title", "");
         model.changeNewQuestionProperty("text", "");
         model.changeNewQuestionProperty("tagsAsString", "");
-        model.changeModelProperty("questionDisplayedList", model.state.questions)
         window.location.assign("#/all-questions");
     }
 
@@ -27,25 +26,29 @@ class QuestionPresenter {
     }
 
     onChangeSearchText(value) {
-        model.changeModelProperty("questionSearchText",value);
+        model.changeModelProperty("questionSearchText", value);
     }
 
-    onSearchByTitle(){
-        var filteredList = model.filterQuestionsByTitle(model.state.questionSearchText);
-        model.changeModelProperty("questionDisplayedList",filteredList);
+    onSearchByTitle() {
+        if (model.state.questionSearchText == "") {
+            window.location.assign('#/all-questions/');
+        } else {
+            window.location.assign('#all-questions/filterByTitle/' + model.state.questionSearchText);
+        }
     }
 
-    onSearchByTag(){
-        var tags = model.state.questionSearchText.trim().split(',');
-        var filteredList = model.filterQuestionsByTag(tags);
-        model.changeModelProperty("questionDisplayedList",filteredList);
+    onSearchByTag() {
+        if (model.state.questionSearchText == "") {
+            window.location.assign('#/all-questions/');
+        } else {
+            window.location.assign('#all-questions/filterByTag/' + model.state.questionSearchText);
+        }
     }
 
     onUpdate(questionId) {
         model.updateQuestion(questionId, model.state.updateQuestion.title, model.state.updateQuestion.text);
         model.changeUpdateQuestionProperty("title", "");
         model.changeUpdateQuestionProperty("text", "");
-        model.changeModelProperty("questionDisplayedList", model.state.questions);
         window.location.assign('#/question-details/' + questionId);
     }
 
@@ -60,10 +63,10 @@ class QuestionPresenter {
     }
 
     onVote(questionId, vote) {
-        if(vote > 0){
+        if (vote > 0) {
             model.sendVote(model.state.currentUser.id, questionId, true);
         } else {
-            model.sendVote(model.state.currentUser.id, questionId, false);            
+            model.sendVote(model.state.currentUser.id, questionId, false);
         }
     }
 }
