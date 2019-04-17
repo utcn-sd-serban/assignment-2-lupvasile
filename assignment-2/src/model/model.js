@@ -92,6 +92,14 @@ class Model extends EventEmitter {
         ///this does not work???
     }
 
+    prepareQuestionForUpdate(questionId) {
+        var question = this.getQuestion(questionId);
+        this.state.updateQuestion.title = question.title;
+        this.state.updateQuestion.text = question.text;
+
+        this.emit("change", this.state);
+    }
+
     deleteQuestion(questionId) {
         this.state = {
             ...this.state,
@@ -115,7 +123,7 @@ class Model extends EventEmitter {
 
         this.emit("change", this.state);
     }
-
+    
     changeNewQuestionProperty(property, value) {
         this.state = {
             ...this.state,

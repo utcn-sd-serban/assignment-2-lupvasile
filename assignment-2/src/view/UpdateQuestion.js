@@ -1,7 +1,7 @@
 import React from "react";
 import SmartNavBar from "./SmartNavBar";
 
-const UpdateQuestion = ({ question, onUpdate, onChange }) => (
+const UpdateQuestion = ({ question, onUpdate, onChange, questionId }) => (
     <div>
         <SmartNavBar />
         <div className="column is-13">
@@ -19,7 +19,7 @@ const UpdateQuestion = ({ question, onUpdate, onChange }) => (
                 </div>
             </div>
             <div className="control">
-                <button className="button is-link" onClick={() => onUpdate(question.id)}>Update question</button>
+                <button className="button is-link" onClick={() => onUpdate(questionId)}>Update question</button>
             </div>
         </div>
     </div>

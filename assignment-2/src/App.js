@@ -8,6 +8,7 @@ import BannedUser from './view/BannedUser';
 import SmartQuestionList from './view/SmartQuestionList';
 import SmartAddQuestion from './view/SmartAddQuestion';
 import SmartQuestionDetails from './view/SmartQuestionDetails';
+import SmartUpdateQuestion from './view/SmartUpdateQuestion';
 import Test from './view/Test';
 
 const App = () => (
@@ -19,6 +20,7 @@ const App = () => (
         <Route exact={true} component={SmartQuestionList} path="/all-questions" />
         <Route exact={true} component={SmartAddQuestion} path="/add-question" />
         <Route exact={true} component={SmartQuestionDetails} path="/question-details/:questionId" />'
+        <Route exact={true} component={SmartUpdateQuestion} path="/edit-question/:questionId" />'
         <Route exact={true} component={SmartQuestionList} path="/all-questions" />
       </Switch>
     </HashRouter>

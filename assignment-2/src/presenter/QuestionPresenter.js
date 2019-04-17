@@ -23,7 +23,7 @@ class QuestionPresenter {
     }
 
     onChangeForUpdate(property, value) {
-        model.changeNewQuestionPropertyNonEmissive(property, value);
+        model.changeUpdateQuestionProperty(property, value);
     }
 
     onChangeSearchText(value) {
@@ -42,19 +42,21 @@ class QuestionPresenter {
     }
 
     onUpdate(questionId) {
-        var question = model.getQuestion(questionId);
-        var newTitle = model.state.newQuestion.title == "" ? question.title : model.state.newQuestion.title;
-        var newText = model.state.newQuestion.text == "" ? question.text : model.state.newQuestion.text;
-    
-        model.updateQuestion(questionId, newTitle, newText);
-        model.changeNewQuestionProperty("title", "");
-        model.changeNewQuestionProperty("text", "");
-        model.changeModelProperty("questionDisplayedList", model.state.questions)
+        model.updateQuestion(questionId, model.state.updateQuestion.title, model.state.updateQuestion.text);
+        model.changeUpdateQuestionProperty("title", "");
+        model.changeUpdateQuestionProperty("text", "");
+        model.changeModelProperty("questionDisplayedList", model.state.questions);
+        window.location.assign('#/question-details/' + questionId);
     }
 
     onDelete(questionId) {
         window.location.assign('#/all-questions/')
         model.deleteQuestion(questionId);
+    }
+
+    onEdit(questionId) {
+        model.prepareQuestionForUpdate(questionId);
+        window.location.assign("#/edit-question/" + questionId);
     }
 
     onVote(questionId, vote) {

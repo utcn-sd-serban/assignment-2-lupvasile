@@ -1,7 +1,7 @@
 import React from "react";
 import SmartNavBar from "./SmartNavBar";
 
-const QuestionDetails = ({ question, loggedUser, onDelete, onUpdate, onChange, onVote, asdf }) => (
+const QuestionDetails = ({ question, loggedUser, onDelete, onEdit, onChange, onVote}) => (
     <div>
         {question !== undefined ?
             <div>
@@ -12,12 +12,7 @@ const QuestionDetails = ({ question, loggedUser, onDelete, onUpdate, onChange, o
                             <div className="card-content">
                                 <div className="media">
                                     <div className="media-content has-text-centered">
-                                        {loggedUser.isModerator ?
-                                            <textarea className="textarea" placeholder="Textarea" rows="1"
-                                                onChange={e => onChange("title", e.target.value)}>{question.title}</textarea>
-
-                                            : <p className="title article-title">{question.title}</p>
-                                        }
+                                        <p className="title article-title">{question.title}</p>
                                         <div className="tags has-addons level-item">
                                             <span className="tag is-rounded is-info">{question.author.username}</span>
                                             <span className="tag is-info">score: {question.author.score}</span>
@@ -31,12 +26,7 @@ const QuestionDetails = ({ question, loggedUser, onDelete, onUpdate, onChange, o
                                     </div>
                                 </div>
                                 <div className="content article-body">
-                                    {loggedUser.isModerator ?
-
-                                        <p contentEditable="true" id="asdfasdf"
-                                            onChange={() => onChange("text", document.getElementById("asdfasdf").innerHTML)}>{question.text}</p>
-                                        : <p>{question.text}</p>
-                                    }
+                                        <p>{question.text}</p>
                                     <p contentEditable="true"
                                             >{question.text}</p>
                                     <div className="media-content">
@@ -52,7 +42,7 @@ const QuestionDetails = ({ question, loggedUser, onDelete, onUpdate, onChange, o
                                         </div>
                                         {loggedUser.isModerator ?
                                             <div>
-                                                <button className="button is-info is-light is-small" onClick={() => onUpdate(question.id)}>Update</button>
+                                                <button className="button is-info is-light is-small" onClick={() => onEdit(question.id)}>Edit</button>
                                                 &nbsp;
                                 <button className="button is-black is-small" onClick={() => onDelete(question.id)}>Delete</button>
                                             </div>

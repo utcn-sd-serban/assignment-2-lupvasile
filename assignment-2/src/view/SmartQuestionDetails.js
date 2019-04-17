@@ -33,10 +33,9 @@ export default class SmartQuestionDetails extends Component {
                 question={this.state.question}
                 loggedUser={this.state.loggedUser}
                 onChange={questionPresenter.onChangeForUpdate}
-                onUpdate={questionPresenter.onUpdate}
+                onEdit={questionPresenter.onEdit}
                 onDelete={questionPresenter.onDelete}
                 onVote={questionPresenter.onVote}
-                asdf={this.state.question.text}
             />
         );
     }

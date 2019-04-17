@@ -5,16 +5,23 @@ import AddQuestion from "./AddQuestion";
 import questionPresenter from "../presenter/QuestionPresenter";
 import UpdateQuestion from "./UpdateQuestion";
 
-const mapModelStateToComponentState = modelState => ({
-    updateQuestion: modelState.updateQuestion
+const mapModelStateToComponentState = (modelState,props) => ({
+    updateQuestion: modelState.updateQuestion,
+    updateId: parseInt(props.match.params.questionId)
 });
 
 export default class SmartCreateStudent extends Component {
-    constructor() {
-        super();
-        this.state = mapModelStateToComponentState(model.state);
-        this.listener = modelState => this.setState(mapModelStateToComponentState(modelState));
+    constructor(props) {
+        super(props);
+        this.state = mapModelStateToComponentState(model.state, props);
+        this.listener = modelState => this.setState(mapModelStateToComponentState(modelState, this.props));
         model.addListener("change", this.listener);
+    }
+
+    componentDidUpdate(prev) {
+        if (prev.match.params.index !== this.props.match.params.index) {
+            this.setState(mapModelStateToComponentState(model.state, this.props));
+        }
     }
 
     componentWillUnmount() {
@@ -27,6 +34,7 @@ export default class SmartCreateStudent extends Component {
                 onUpdate={questionPresenter.onUpdate}
                 onChange={questionPresenter.onChangeForUpdate}
                 question={this.state.updateQuestion}
+                questionId={this.state.updateId}
                  />
         );
     }
