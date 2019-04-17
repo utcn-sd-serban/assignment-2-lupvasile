@@ -16,7 +16,6 @@ import SmartNavBar from './view/SmartNavBar';
 
 const App = () => (
   <div className="App">
-  <SmartNavBar />
     <HashRouter>
       <Switch>
         <Route exact={true} component={SmartLogin} path="/" />
@@ -34,5 +33,5 @@ const App = () => (
   </div>
 );
 ///textboxu din questionDetails nu se updateaza singur
-
+//pot sa nu clonez questionu manual inainte de update? cand accesez linku prima data la update sa isi ia starea intrabarii? gen update-quesion/questionId
 export default App;

@@ -13,9 +13,11 @@ const NavBar = ({ user, onLogout, onAllQuestions, onAddQuestion, onBanUsers }) =
                 </div>
                 <div id="topNav" className="navbar-menu">
                     <div className="navbar-start">
-                        <a className="navbar-item" onClick={onAllQuestions}>All questions</a>
-                        <a className="navbar-item" onClick={onAddQuestion}>Add question</a>
-                        {user.isModerator ? <a className="navbar-item" onClick={onBanUsers}>Ban user</a> : null}
+                        <div className="navbar-item">
+                            <a className="navbar-item" onClick={onAllQuestions}>All questions</a>
+                            <a className="navbar-item" onClick={onAddQuestion}>Add question</a>
+                            {user.isModerator ? <a className="navbar-item" onClick={onBanUsers}>Ban user</a> : null}
+                        </div>
                     </div>
                     <div className="navbar-end">
                         <div className="navbar-item">

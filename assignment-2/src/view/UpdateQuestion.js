@@ -3,6 +3,7 @@ import SmartNavBar from "./SmartNavBar";
 
 const UpdateQuestion = ({ question, onUpdate, onChange, questionId }) => (
     <div>
+        <SmartNavBar />
         <div className="column is-13">
             <div className="field">
                 <label className="label">Title</label>

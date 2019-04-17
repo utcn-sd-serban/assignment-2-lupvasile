@@ -3,7 +3,8 @@ import SmartNavBar from "./SmartNavBar";
 import UserSummary from "./UserSummary"
 
 const UserList = ({ users, onBan }) => (
-    <div> 
+    <div>
+        <SmartNavBar />
         <div className="columns is-centered">
             <div className="column is-8 ">
                 {

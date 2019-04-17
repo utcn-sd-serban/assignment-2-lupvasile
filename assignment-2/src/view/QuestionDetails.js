@@ -5,6 +5,7 @@ import AnswerList from "./AnswerList";
 const QuestionDetails = ({ question, loggedUser, onDelete, onEdit, onChange, onVote,
     answers, onDeleteAnswer, onEditAnswer, onVoteAnswer }) => (
         <div>
+            <SmartNavBar />
             {question !== undefined ?
                 <div>
                     <section className="articles">
