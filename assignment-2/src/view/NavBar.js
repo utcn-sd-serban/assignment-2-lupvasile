@@ -1,6 +1,6 @@
 import React from "react";
-
-const NavBar = ({ user, onLogout, onAllQuestions, onAddQuestion }) => (
+//maybe just a href?
+const NavBar = ({ user, onLogout, onAllQuestions, onAddQuestion, onBanUsers }) => (
     <div>
         <nav className="navbar is-light topNav">
             <div className="container">
@@ -15,7 +15,7 @@ const NavBar = ({ user, onLogout, onAllQuestions, onAddQuestion }) => (
                     <div className="navbar-start">
                         <a className="navbar-item" onClick={onAllQuestions}>All questions</a>
                         <a className="navbar-item" onClick={onAddQuestion}>Add question</a>
-                        {user.isModerator ? <a className="navbar-item" href="asdf">Ban user</a> : null}
+                        {user.isModerator ? <a className="navbar-item" onClick={onBanUsers}>Ban user</a> : null}
                     </div>
                     <div className="navbar-end">
                         <div className="navbar-item">

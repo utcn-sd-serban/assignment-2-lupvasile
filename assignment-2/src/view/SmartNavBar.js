@@ -27,6 +27,7 @@ export default class SmartNavBar extends Component {
                     onLogout={navBarPresenter.onLogout}
                     onAddQuestion={navBarPresenter.onAddQuestion}
                     onAllQuestions={navBarPresenter.onAllQuestions}
+                    onBanUsers={navBarPresenter.onBanUsers}
                 />
             </div>
         );

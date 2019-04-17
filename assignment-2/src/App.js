@@ -9,7 +9,9 @@ import SmartQuestionList from './view/SmartQuestionList';
 import SmartAddQuestion from './view/SmartAddQuestion';
 import SmartQuestionDetails from './view/SmartQuestionDetails';
 import SmartUpdateQuestion from './view/SmartUpdateQuestion';
+import SmartUpdateAnswer from './view/SmartUpdateAnswer';
 import Test from './view/Test';
+import SmartUserList from './view/SmartUserList';
 
 const App = () => (
   <div className="App">
@@ -21,7 +23,10 @@ const App = () => (
         <Route exact={true} component={SmartAddQuestion} path="/add-question" />
         <Route exact={true} component={SmartQuestionDetails} path="/question-details/:questionId" />'
         <Route exact={true} component={SmartUpdateQuestion} path="/edit-question/:questionId" />'
+        <Route exact={true} component={SmartUpdateAnswer} path="/edit-answer/:answerId" />'
         <Route exact={true} component={SmartQuestionList} path="/all-questions" />
+        <Route exact={true} component={SmartUserList} path="/ban-users" />
+        <Route exact={true} component={Test} path="/" />
       </Switch>
     </HashRouter>
   </div>

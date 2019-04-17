@@ -8,6 +8,10 @@ const makeQuestion = (id, author, title, text, creationDateTime, tags, voteCount
     id, author, title, text, creationDateTime, tags, voteCount
 })
 
+const makeAnswer = (id, author, text, creationDateTime, questionId, voteCount) => ({
+    id, author, text, creationDateTime, questionId, voteCount
+})
+
 class Model extends EventEmitter {
     static firstInstance = false;
 
@@ -49,10 +53,103 @@ class Model extends EventEmitter {
 
             questionSearchText: "",
 
-            questionDisplayedList: []
+            questionDisplayedList: [],
+
+            answers: [makeAnswer(1, localUsers[0], "answer 1", "02/02/02", 1, 0),
+            makeAnswer(2, localUsers[1], "answer 2", "02/02/02", 1, 0),
+            makeAnswer(3, localUsers[0], "answer 3", "02/02/02", 1, 0)
+            ],
+
+            newAnswer: { text: "" },
+
+            updateAnswer: { text: "" }
         };
 
         this.state.questionDisplayedList = this.state.questions;
+    }
+
+    banUser(requesterUserId, bannedUserId) {
+        this.state.users.find(u => u.id === bannedUserId).isBlocked = true;
+        this.emit("change", this.state);
+    }
+
+    listAnswersForQuestion(questionId) {
+        return this.state.answers.filter(a => a.questionId === questionId);
+    }
+
+    getAnswer(answerId) {
+        return this.state.answers.find(a => a.id === answerId);
+    }
+
+    sendVoteAnswer(userId, answerId, voteType) {
+        var answer = this.getAnswer(answerId);
+        if (voteType) {
+            answer.voteCount++;
+            answer.author.score++;
+            this.state.users.find(u => u.id === userId).score++;
+        } else {
+            answer.voteCount--;
+            answer.author.score--;
+            this.state.users.find(u => u.id === userId).score--;
+        }
+
+        this.emit("change", this.state);
+    }
+
+    addAnswer(id, author, text, questionId) {
+        this.state = {
+            ...this.state,
+            answers: [makeAnswer(id, author, text, "04/05/29", questionId, 0)].concat(this.state.answers)
+        };
+        debugger;
+        this.emit("change", this.state);
+    }
+
+    updateAnswerText(answerId, newText) {
+        var answer = this.getAnswer(answerId);
+        if (answer === undefined) { return; }
+
+        answer.text = newText;
+
+        this.emit("change", this.state);
+    }
+
+    deleteAnswer(answerId) {
+        this.state = {
+            ...this.state,
+            answers: this.state.answers.filter(a => a.id !== answerId),
+        };
+
+        this.emit("change", this.state);
+    }
+
+    changeNewAnswerProperty(property, value) {
+        this.state = {
+            ...this.state,
+            newAnswer: {
+                ...this.state.newAnswer,
+                [property]: value
+            }
+        };
+        this.emit("change", this.state);
+    }
+
+    prepareAnswerForUpdate(answerId) {
+        var answer = this.getAnswer(answerId);
+        this.state.updateAnswer.text = answer.text;
+
+        this.emit("change", this.state);
+    }
+
+    changeUpdateAnswerProperty(property, value) {
+        this.state = {
+            ...this.state,
+            updateAnswer: {
+                ...this.state.updateAnswer,
+                [property]: value
+            }
+        };
+        this.emit("change", this.state);
     }
 
     filterQuestionsByTag(tags) {
@@ -123,7 +220,7 @@ class Model extends EventEmitter {
 
         this.emit("change", this.state);
     }
-    
+
     changeNewQuestionProperty(property, value) {
         this.state = {
             ...this.state,

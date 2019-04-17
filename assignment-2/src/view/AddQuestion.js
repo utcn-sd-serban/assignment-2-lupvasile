@@ -11,6 +11,8 @@ const AddQuestion = ({ question, existingTags, onCreate, onChange }) => (
                     <input className="input" type="text" placeholder="Please input title" value={question.title} onChange={e => onChange("title", e.target.value)} />
                 </div>
             </div>
+            
+
 
             <div className="field">
                 <label className="label">Text</label>
@@ -43,6 +45,11 @@ const AddQuestion = ({ question, existingTags, onCreate, onChange }) => (
 
                 <button className="button is-link" onClick={onCreate}>Add question</button>
             </div>
+
+
+
+
+            
         </div>
     </div>
 );
