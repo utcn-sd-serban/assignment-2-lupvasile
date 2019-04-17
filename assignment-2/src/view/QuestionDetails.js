@@ -1,42 +1,71 @@
 import React from "react";
 import SmartNavBar from "./SmartNavBar";
 
-const QuestionDetails = ({ question }) => (
+const QuestionDetails = ({ question, loggedUser, onDelete, onUpdate, onChange, onVote, asdf }) => (
     <div>
-        <SmartNavBar />
-        <section class="articles">
-            <div class="column is-8 is-offset-2">
-                <div class="card article">
-                    <div class="card-content">
-                        <div class="media">
-                            <div class="media-content has-text-centered">
-                                <p class="title article-title">{question.title}</p>
-                                <div class="tags has-addons level-item">
-                                    <span class="tag is-rounded is-info">{question.author.username}</span>
-                                    <span class="tag">score: {question.author.score}</span>
-                                    <span class="tag is-rounded">{question.creationDateTime}</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="content article-body">
-                            <p>{question.text}</p>
-                            <div className="media-content">
-                                <div className="content">
-                                    <p>
+        {question !== undefined ?
+            <div>
+                <SmartNavBar />
+                <section className="articles">
+                    <div className="column is-8 is-offset-2">
+                        <div className="card article">
+                            <div className="card-content">
+                                <div className="media">
+                                    <div className="media-content has-text-centered">
+                                        {loggedUser.isModerator ?
+                                            <textarea className="textarea" placeholder="Textarea" rows="1"
+                                                onChange={e => onChange("title", e.target.value)}>{question.title}</textarea>
 
-                                        {
-                                            question.tags.map((tag, index) => (
-                                                <span><span className="tag">{tag} </span> &nbsp;</span>
-                                            ))
+                                            : <p className="title article-title">{question.title}</p>
                                         }
-                                    </p>
+                                        <div className="tags has-addons level-item">
+                                            <span className="tag is-rounded is-info">{question.author.username}</span>
+                                            <span className="tag is-info">score: {question.author.score}</span>
+                                            <span className="tag">voteCount: {question.voteCount}</span>
+                                            {question.author.id !== loggedUser.id ? 
+                                            <span className="tag"><a onClick={()=>onVote(question.id, 1)}>Upvote</a></span>:null}
+                                            {question.author.id !== loggedUser.id ? 
+                                            <span className="tag"><a onClick={()=>onVote(question.id, -1)}>Downvote</a></span>:null}
+                                            <span className="tag is-rounded">{question.creationDateTime}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="content article-body">
+                                    {loggedUser.isModerator ?
+
+                                        <p contentEditable="true" id="asdfasdf"
+                                            onChange={() => onChange("text", document.getElementById("asdfasdf").innerHTML)}>{question.text}</p>
+                                        : <p>{question.text}</p>
+                                    }
+                                    <p contentEditable="true"
+                                            >{question.text}</p>
+                                    <div className="media-content">
+                                        <div className="content">
+                                            <p>
+
+                                                {
+                                                    question.tags.map((tag, index) => (
+                                                        <span><span className="tag">{tag} </span> &nbsp;</span>
+                                                    ))
+                                                }
+                                            </p>
+                                        </div>
+                                        {loggedUser.isModerator ?
+                                            <div>
+                                                <button className="button is-info is-light is-small" onClick={() => onUpdate(question.id)}>Update</button>
+                                                &nbsp;
+                                <button className="button is-black is-small" onClick={() => onDelete(question.id)}>Delete</button>
+                                            </div>
+                                            : null
+                                        }
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </section>
             </div>
-        </section>
+            : null}
     </div>
 );
 

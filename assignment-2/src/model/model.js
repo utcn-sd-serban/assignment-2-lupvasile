@@ -13,31 +13,36 @@ class Model extends EventEmitter {
 
     constructor() {
         super();
-        var localUsers = [makeUser(1,"u1","pass",0,false,false),
-        makeUser(2,"u2","pass",0,true,false),
-        makeUser(3,"u3","pass",0,false,true)];
+        var localUsers = [makeUser(1, "u1", "pass", 0, false, false),
+        makeUser(2, "u2", "pass", 0, true, false),
+        makeUser(3, "u3", "pass", 0, false, true)];
 
         this.state = {
             users: localUsers,
 
-            currentUser: null,
+            currentUser: localUsers[1],//TODO: set back to null
 
             loginUser: {
                 username: "",
                 password: ""
             },
 
-            questions: [makeQuestion(1, localUsers[0], "question 1", "ana are mere multe1", 
-                        "02/02/02", ["tag1","tag2","tag3"], 0),
-                        makeQuestion(2, localUsers[1], "question 2", "ana are mere multe2", 
-                        "02/01/02", ["tag2"], 4),
-                        makeQuestion(3, localUsers[0], "question 3", "ana are mere multe3", 
-                        "02/02/01", ["tag1"], -4)],
-            
+            questions: [makeQuestion(1, localUsers[0], "question 1", "ana are mere multe1",
+                "02/02/02", ["tag1", "tag2", "tag3"], 0),
+            makeQuestion(2, localUsers[1], "question 2", "ana are mere multe2",
+                "02/01/02", ["tag2"], 4),
+            makeQuestion(3, localUsers[0], "question 3", "ana are mere multe3",
+                "02/02/01", ["tag1"], -4)],
+
             newQuestion: {
                 title: "",
                 text: "",
                 tagsAsString: ""
+            },
+
+            updateQuestion: {
+                title: "",
+                text: "",
             },
 
             tags: ["tag1", "tag2", "tag3"],
@@ -51,22 +56,22 @@ class Model extends EventEmitter {
     }
 
     filterQuestionsByTag(tags) {
-        return this.state.questions.filter(q=>tags.every(t=>q.tags.includes(t)));
+        return this.state.questions.filter(q => tags.every(t => q.tags.includes(t)));
     }
 
     filterQuestionsByTitle(title) {
-        return this.state.questions.filter(q=>q.title.includes(title));
+        return this.state.questions.filter(q => q.title.includes(title));
     }
 
     getQuestion(id) {
-        var res = this.state.questions.find(q=>q.id === id);
+        var res = this.state.questions.find(q => q.id === id);
         return res;
     }
 
     addQuestion(id, author, title, text, tags) {
         this.state = {
             ...this.state,
-            questions: [makeQuestion(id,author,title,text,"04/05/29",tags,0)].concat(this.state.questions)
+            questions: [makeQuestion(id, author, title, text, "04/05/29", tags, 0)].concat(this.state.questions)
         };
 
         this.state = {
@@ -76,11 +81,57 @@ class Model extends EventEmitter {
         this.emit("change", this.state);
     }
 
+    updateQuestion(questionId, newTitle, newText) {
+        var question = this.getQuestion(questionId);
+        if (question === undefined) { return; }
+
+        question.title = newTitle;
+        question.text = newText;
+
+        this.emit("change", this.state);
+        ///this does not work???
+    }
+
+    deleteQuestion(questionId) {
+        this.state = {
+            ...this.state,
+            questions: this.state.questions.filter(q => q.id !== questionId),
+            questionDisplayedList: this.state.questionDisplayedList.filter(q => q.id !== questionId)
+        };
+        this.emit("change", this.state);
+    }
+
+    sendVote(userId, questionId, voteType) {
+        var question = this.getQuestion(questionId);
+        if (voteType) {
+            question.voteCount++;
+            question.author.score++;
+            this.state.users.find(u => u.id === userId).score++;
+        } else {
+            question.voteCount--;
+            question.author.score--;
+            this.state.users.find(u => u.id === userId).score--;
+        }
+
+        this.emit("change", this.state);
+    }
+
     changeNewQuestionProperty(property, value) {
         this.state = {
             ...this.state,
             newQuestion: {
                 ...this.state.newQuestion,
+                [property]: value
+            }
+        };
+        this.emit("change", this.state);
+    }
+
+    changeUpdateQuestionProperty(property, value) {
+        this.state = {
+            ...this.state,
+            updateQuestion: {
+                ...this.state.updateQuestion,
                 [property]: value
             }
         };
@@ -96,7 +147,7 @@ class Model extends EventEmitter {
     }
 
     makeTagsList() {
-        var allTags = [].concat.apply([], this.state.questions.map(q=>q.tags));
+        var allTags = [].concat.apply([], this.state.questions.map(q => q.tags));
         return Array.from(new Set(allTags)).sort();
     }
 

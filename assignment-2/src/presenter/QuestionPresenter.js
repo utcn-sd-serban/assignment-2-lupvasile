@@ -22,6 +22,10 @@ class QuestionPresenter {
         model.changeNewQuestionProperty(property, value);
     }
 
+    onChangeForUpdate(property, value) {
+        model.changeNewQuestionPropertyNonEmissive(property, value);
+    }
+
     onChangeSearchText(value) {
         model.changeModelProperty("questionSearchText",value);
     }
@@ -35,6 +39,30 @@ class QuestionPresenter {
         var tags = model.state.questionSearchText.trim().split(',');
         var filteredList = model.filterQuestionsByTag(tags);
         model.changeModelProperty("questionDisplayedList",filteredList);
+    }
+
+    onUpdate(questionId) {
+        var question = model.getQuestion(questionId);
+        var newTitle = model.state.newQuestion.title == "" ? question.title : model.state.newQuestion.title;
+        var newText = model.state.newQuestion.text == "" ? question.text : model.state.newQuestion.text;
+    
+        model.updateQuestion(questionId, newTitle, newText);
+        model.changeNewQuestionProperty("title", "");
+        model.changeNewQuestionProperty("text", "");
+        model.changeModelProperty("questionDisplayedList", model.state.questions)
+    }
+
+    onDelete(questionId) {
+        window.location.assign('#/all-questions/')
+        model.deleteQuestion(questionId);
+    }
+
+    onVote(questionId, vote) {
+        if(vote > 0){
+            model.sendVote(model.state.currentUser.id, questionId, true);
+        } else {
+            model.sendVote(model.state.currentUser.id, questionId, false);            
+        }
     }
 }
 

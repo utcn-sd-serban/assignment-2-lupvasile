@@ -24,6 +24,6 @@ const App = () => (
     </HashRouter>
   </div>
 );
-
+///textboxu din questionDetails nu se updateaza singur
 
 export default App;

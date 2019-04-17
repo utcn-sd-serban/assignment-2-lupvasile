@@ -2,9 +2,11 @@ import React, { Component } from "react";
 import model from "../model/model";
 
 import QuestionDetails from "./QuestionDetails";
+import questionPresenter from "../presenter/QuestionPresenter";
 
 const mapModelStateToComponentState = (modelState, props) => ({
-    question: model.getQuestion(parseInt(props.match.params.questionId))
+    question: model.getQuestion(parseInt(props.match.params.questionId)),
+    loggedUser: model.state.currentUser
 })
 
 export default class SmartQuestionDetails extends Component {
@@ -28,7 +30,14 @@ export default class SmartQuestionDetails extends Component {
     render() {
         return (
             <QuestionDetails
-                question={this.state.question} />
+                question={this.state.question}
+                loggedUser={this.state.loggedUser}
+                onChange={questionPresenter.onChangeForUpdate}
+                onUpdate={questionPresenter.onUpdate}
+                onDelete={questionPresenter.onDelete}
+                onVote={questionPresenter.onVote}
+                asdf={this.state.question.text}
+            />
         );
     }
 }

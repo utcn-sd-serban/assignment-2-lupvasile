@@ -23,12 +23,12 @@ export default class SmartNavBar extends Component {
     render() {
         return (
             <div>
-            <NavBar user = {this.state.currentUser}
-            onLogout={navBarPresenter.onLogout}
-            onAddQuestion={navBarPresenter.onAddQuestion}
-            onAllQuestions={navBarPresenter.onAllQuestions}
-                 />
-                </div>
+                <NavBar user={this.state.currentUser}
+                    onLogout={navBarPresenter.onLogout}
+                    onAddQuestion={navBarPresenter.onAddQuestion}
+                    onAllQuestions={navBarPresenter.onAllQuestions}
+                />
+            </div>
         );
     }
 }

@@ -2,7 +2,7 @@ import model from "../model/model";
 
 class NavBarPresenter {
     onLogout() {
-        window.location.assign("#/all-questions/");
+        window.location.assign("#/");
     }
 
     onAllQuestions() {
