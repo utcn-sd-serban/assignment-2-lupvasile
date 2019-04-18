@@ -18,7 +18,7 @@ export default class SmartUpdateQuestion extends Component {
     }
 
     componentDidUpdate(prev) {
-        if (prev.match.params.index !== this.props.match.params.index) {
+        if (prev.match.params.questionId !== this.props.match.params.questionId) {
             this.setState(mapModelStateToComponentState(model.state, this.props));
         }
     }

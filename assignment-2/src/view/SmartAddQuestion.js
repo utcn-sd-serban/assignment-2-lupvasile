@@ -9,7 +9,7 @@ const mapModelStateToComponentState = modelState => ({
     tags: modelState.tags
 });
 
-export default class SmartCreateStudent extends Component {
+export default class SmartAddQuestion extends Component {
     constructor() {
         super();
         this.state = mapModelStateToComponentState(model.state);

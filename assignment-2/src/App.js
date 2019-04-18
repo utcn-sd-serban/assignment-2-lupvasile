@@ -1,18 +1,16 @@
 import React from 'react';
+import { HashRouter, Route, Switch } from "react-router-dom";
 import './App.css';
-
-import { HashRouter, Switch, Route } from "react-router-dom";
-
-import SmartLogin from './view/SmartLogin';
 import BannedUser from './view/BannedUser';
-import SmartQuestionList from './view/SmartQuestionList';
 import SmartAddQuestion from './view/SmartAddQuestion';
+import SmartLogin from './view/SmartLogin';
 import SmartQuestionDetails from './view/SmartQuestionDetails';
-import SmartUpdateQuestion from './view/SmartUpdateQuestion';
+import SmartQuestionList from './view/SmartQuestionList';
 import SmartUpdateAnswer from './view/SmartUpdateAnswer';
-import Test from './view/Test';
+import SmartUpdateQuestion from './view/SmartUpdateQuestion';
 import SmartUserList from './view/SmartUserList';
-import SmartNavBar from './view/SmartNavBar';
+
+
 
 const App = () => (
   <div className="App">
@@ -27,11 +25,11 @@ const App = () => (
         <Route exact={true} component={SmartUpdateAnswer} path="/edit-answer/:answerId" />'
         <Route exact={true} component={SmartQuestionList} path="/all-questions" />
         <Route exact={true} component={SmartUserList} path="/ban-users" />
-        <Route exact={true} component={Test} path="/" />
       </Switch>
     </HashRouter>
   </div>
 );
-///textboxu din questionDetails nu se updateaza singur
 //pot sa nu clonez questionu manual inainte de update? cand accesez linku prima data la update sa isi ia starea intrabarii? gen update-quesion/questionId
+//e mai bine sau mai rau fara displayedQuestionList?
+//ar trebui si userul stocal in url?
 export default App;

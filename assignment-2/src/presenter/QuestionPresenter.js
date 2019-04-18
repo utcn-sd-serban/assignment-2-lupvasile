@@ -29,7 +29,7 @@ class QuestionPresenter {
     }
 
     onSearchByTitle() {
-        if (model.state.questionSearchText == "") {
+        if (model.state.questionSearchText === "") {
             window.location.assign('#/all-questions/');
         } else {
             window.location.assign('#all-questions/filterByTitle/' + model.state.questionSearchText);
@@ -37,7 +37,7 @@ class QuestionPresenter {
     }
 
     onSearchByTag() {
-        if (model.state.questionSearchText == "") {
+        if (model.state.questionSearchText === "") {
             window.location.assign('#/all-questions/');
         } else {
             window.location.assign('#all-questions/filterByTag/' + model.state.questionSearchText);

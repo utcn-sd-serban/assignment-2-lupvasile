@@ -18,7 +18,7 @@ export default class SmartAnswerList extends Component {
         model.addListener("change", this.listener);
     }
 
-    componentDidUpdate(prev) {
+    componentDidUpdate(prev) {//do I still need this?
         if (prev.questionId !== this.props.questionId) {
             this.setState(mapModelStateToComponentState(model.state, this.props));
         }

@@ -24,7 +24,7 @@ class Model extends EventEmitter {
         this.state = {
             users: localUsers,
 
-            currentUser: localUsers[1],//TODO: set back to null
+            currentUser: null,
 
             loginUser: {
                 username: "",
@@ -150,7 +150,6 @@ class Model extends EventEmitter {
 
     filterQuestionByTagCommaSeparated(tagText) {
         var tags = tagText.trim().split(',');
-        debugger;
         return this.filterQuestionsByTag(tags);
     }
 
